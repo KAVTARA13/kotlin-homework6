@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nag_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.fragments.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="kavtaradze.com/{amount}" />
+        <argument
+            android:name="amount"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.fragments.fragments.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard"
+        android:label="DashboardFragment">
+        <argument
+            android:name="amount"
+            android:defaultValue="-1"
+            app:argType="integer"/>
+    </fragment>
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/deepLinkFragment">
+        <fragment
+            android:id="@+id/deepLinkFragment"
+            android:name="com.example.fragments.fragments.DeepLinkFragment"
+            android:label="DashboardFragment"
+            tools:layout="@layout/deep_link_fragment">
+            <argument
+                android:name="amount"
+                android:defaultValue="0"
+                app:argType="integer" />
+        </fragment>
+        <fragment
+            android:id="@+id/notificationFragment"
+            android:name="com.example.fragments.fragments.NotificationFragment"
+            android:label="NotificationFragment"
+            tools:layout="@layout/fragment_notification" />
+    </navigation>
+</navigation>
